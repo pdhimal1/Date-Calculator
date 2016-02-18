@@ -1,13 +1,14 @@
+/*
+ * Prakash Dhimal
+ * date.c 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "date.h"
 
 #define SIZE_OF_DATE 11
-
-/*
- * returns date in "mm-dd-yyyy" format
- */
 
 //number of days in the month
 int numDays[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
