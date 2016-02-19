@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "date.h"
 
 #define SIZE_OF_DATE 11
@@ -12,6 +13,7 @@ struct tm today;
 
 void processRequest(int request);
 void mainMenu();
+struct tm getDateFromString(char *string);
 
 
 int main(int argc, char **argv)
@@ -36,7 +38,8 @@ void mainMenu()
 	
 	printf("\n1. Add days to todays Date\n");
 	printf("2. Subtract days from today's date\n");
-	printf("3. Exit.\n");
+	printf("3. Calculate your Age\n");
+	printf("4. Exit.\n");
 	printf("Choose from one of the options above: ");
 	scanf("%d", &request);
 
@@ -71,6 +74,16 @@ void processRequest(int request)
 			mainMenu();
 			break;
 		case 3:
+			printf("Enter your date of birth in mm-dd-yyyy or mm/dd/yyyy format\n");
+			char dob[SIZE_OF_DATE];
+			struct tm DOBinTM;
+			scanf("%s", dob);
+			DOBinTM = getDateFromString(dob);
+			int age = differenceBetweenDates(today, DOBinTM);
+			printf("\nYou are %d years old\n", age);
+			mainMenu();
+			break;
+		case 4:
 			printf("Good bye!\n");
 			break;
 		default:
@@ -79,4 +92,35 @@ void processRequest(int request)
 	}
 
 	free(buffer);
+}
+
+struct tm getDateFromString(char *string)
+{
+	char *tok;
+	char *search = "-/ ";
+	char dates[3][5];
+
+	tok = strtok(string, search);
+
+	int i = 0;
+	while (tok != NULL)
+	{
+		//printf("%s\n", tok);
+		strcpy(dates[i], tok);
+		tok = strtok(NULL, search);
+		i++;
+	}
+	
+	int day = atoi(dates[1]);
+	int month = atoi(dates[0]);
+	int year = atoi(dates[2]);
+
+	struct tm DOB;
+	
+	DOB.tm_mday = day;
+	DOB.tm_mon = month;
+	DOB.tm_year = year;
+
+
+	return DOB;
 }

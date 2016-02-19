@@ -136,3 +136,21 @@ struct tm getDayafter(struct tm today)
 
 	return dateAfter;	
 }
+
+int differenceBetweenDates(struct tm date1, struct tm date2)
+{
+	int years;
+	if (date1.tm_mon > date2.tm_mon)
+		years = date1.tm_year - date2.tm_year;
+	else if (date1.tm_mon == date2.tm_mon)
+	{
+		if (date1.tm_mday >= date2.tm_mday)
+			years = date1.tm_year - date2.tm_year;
+		else 
+			years = date1.tm_year - date2.tm_year -1;
+	}
+	else 
+		years = date1.tm_year - date2.tm_year -1;
+	return years;
+}
+
