@@ -24,4 +24,4 @@ Planned features:
   * Find number of days between two dates
   
 Author: 
-  * @pdhimal1
+  * Prakash Dhimal @pdhimal1
