@@ -6,7 +6,10 @@
 If so, Date calculator does exactly what you want. 
 Date-Calculator is a date calculation program written in C.
 
-You can go back N number of days to get exact date for that day, or you can go forward N number of days.
+Features:
+  * Go back N number of days to get exact date for that day
+  * Look forward N number of days to get exact date for that day
+  * Calculate your age
 
 Makefile is included to make it easer to compile and run the program
 
